@@ -1,10 +1,10 @@
-## Puller - Code Review helper using GitHub's Pull Requests
+## Hull - Code Review helper using GitHub's Pull Requests
 
 ### Installation
 
-http://rubygems.org/gems/puller
+http://rubygems.org/gems/hull
 
-    gem install puller
+    gem install hull
 
 ### Setup
 
@@ -20,32 +20,36 @@ Config GitHub API key (https://github.com/account/admin):
 
 List all pull requests for this project:
 
-    $ puller list
+    $ hull list
 
 Show details about pull request number <number>:
 
-    $ puller show <number>
+    $ hull show <number>
 
 Check out the contents of pull request number <number> and switch to that branch:
 
-    $ puller checkout <number>
+    $ hull checkout <number>
 
     or
 
-    $ puller co <number>
+    $ hull co <number>
 
     or
 
-    $ puller pull <number>
+    $ hull pull <number>
 
 Remove contents of pull request <number> that has been checked out:
 
-    $ puller rm <number>
+    $ hull rm <number>
 
     or
 
-    $ puller remove <number>
+    $ hull remove <number>
 
     or
 
-    $ puller delete <number>
+    $ hull delete <number>
+
+### Why Hull?
+
+Originally it was called puller, but @natekross pushed a gem with the same name to rubygems.org, literally the day I started working on Hull. (╯°□°）╯︵ ┻━┻

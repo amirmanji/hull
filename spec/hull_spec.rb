@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe Puller do
+describe Hull do
   describe "Parsing arguments" do
     it "should handle bad args" do
       commands = [ '', 'asdf', 'foo' ]
       commands.each do |command|
-        puller = Puller.new(command)
-        puller.command.should == 'help'
-        puller.number.should be_nil
+        command = Command.new(command)
+        command.command.should == 'help'
+        command.number.should be_nil
       end
     end
 
@@ -15,9 +15,9 @@ describe Puller do
       commands = %w(list show pull rm)
       commands.each do |command|
         args = "#{command} 10"
-        puller = Puller.new(args)
-        puller.command.should == 'help'
-        puller.number.should be_nil
+        command = Command.new(args)
+        command.command.should == 'help'
+        command.number.should be_nil
       end
     end
   end

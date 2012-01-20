@@ -1,4 +1,4 @@
-module Puller
+module Hull
   class Command
     attr_accessor :command, :number
 

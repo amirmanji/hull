@@ -3,9 +3,9 @@ require 'open-uri'
 require 'time'
 require 'json'
 require 'grit'
-require 'puller/command'
-require 'puller/puller'
-require 'puller/list'
+require 'hull/command'
+require 'hull/hull'
+require 'hull/list'
 
-module Puller
+module Hull
 end

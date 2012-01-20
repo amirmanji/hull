@@ -1,5 +1,5 @@
-module Puller
-  class List < Puller
+module Hull
+  class List < Hull
     def initialize
       json = get_json(github_url)
       if json['error'].to_s != ''

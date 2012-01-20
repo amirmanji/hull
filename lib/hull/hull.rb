@@ -1,5 +1,5 @@
-module Puller
-  class Puller
+module Hull
+  class Hull
 
     BASH_COLORS = {
       :reset  => "0",
