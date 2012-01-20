@@ -60,24 +60,26 @@ module Hull
       @api_token ||= repo.config['github.token']
     end
 
-    def remote_name
-      @remote_name ||= repo.config['hull.remote'] || 'origin'
+    def remote
+      @remote ||= (repo.config['hull.remote'] || 'origin')
     end
 
     def github_url
       @github_url ||=
         begin
-          _, owner, project = repo.config["remote.#{remote}.url"].match(/^git@github.com:([^\/]*)\/(.*)(\.git)?/).to_a
+          unless valid_repository?(repo)
+            raise InvalidRepository.new("Must be a GitHub repository")
+          end
+          _, owner, project = repo.config["remote.#{remote}.url"].match(/^git@github.com:([^\/]*)\/(.*)/).to_a
+          project.gsub!(/\.git$/, '')
+          puts owner
+          puts project
           "https://github.com/api/v2/json/pulls/#{owner}/#{project}"
         end
     end
 
     def repo
-      @repo ||= Grit::Repo.new(".")
-      unless valid_repository?(@repo)
-        raise InvalidRepository.new("#{remote} must be a GitHub repository")
-      end
-      @repo
+      @repo = Grit::Repo.new(".")
     end
 
     def get_json(url)
@@ -87,6 +89,7 @@ module Hull
           api_token
         ]
       }
+      puts url, options
       JSON.load(open(url, options))
     end
 
