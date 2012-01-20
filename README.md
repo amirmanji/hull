@@ -1,12 +1,12 @@
-puller - Code Review helper using GitHub's Pull Requests
+## Puller - Code Review helper using GitHub's Pull Requests
 
-## Installation
+### Installation
 
 http://rubygems.org/gems/puller
 
     gem install puller
 
-## Setup
+### Setup
 
 Config GitHub API key from https://github.com/account/admin:
 
@@ -16,7 +16,7 @@ Config GitHub API key from https://github.com/account/admin:
 
     $ git config github.username <github_username>
 
-## Usage
+### Usage
 
 List all pull requests for this project:
 
@@ -28,8 +28,24 @@ Show details about pull request number <number>:
 
 Check out the contents of pull request number <number> and switch to that branch:
 
-    $ puller get <number>
+    $ puller checkout <number>
+
+    or
+
+    $ puller co <number>
+
+    or
+
+    $ puller pull <number>
 
 Remove contents of pull request <number> that has been checked out:
 
     $ puller rm <number>
+
+    or
+
+    $ puller remove <number>
+
+    or
+
+    $ puller delete <number>
