@@ -12,7 +12,7 @@ describe Puller do
     end
 
     it "should handle good args" do
-      commands = %w(list show get rm)
+      commands = %w(list show pull rm)
       commands.each do |command|
         args = "#{command} 10"
         puller = Puller.new(args)

@@ -8,13 +8,13 @@ http://rubygems.org/gems/puller
 
 ### Setup
 
-Config GitHub API key from https://github.com/account/admin:
-
-    $ git config github.token <api_token>
-
-(Optional) Config Github user name, if different from user.name
+Config Github user name:
 
     $ git config github.username <github_username>
+
+Config GitHub API key (https://github.com/account/admin):
+
+    $ git config github.token <api_token>
 
 ### Usage
 
