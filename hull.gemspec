@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "hull"
-  s.version = "0.0.2"
+  s.version = "0.0.4"
   s.date = "2012-01-20"
 
   s.authors = ["hc5duke"]
@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
 
   s.require_path = "lib"
   s.files = Dir["lib/**/*.rb"]
-  s.add_dependency ["json", "grit"]
+  s.add_dependency "json"
+  s.add_dependency "grit"
   s.executables = ['hull']
 end

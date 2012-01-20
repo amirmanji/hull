@@ -42,6 +42,16 @@ module Hull
       end
     end
 
+    def validate_config
+      if username == '' || api_token == ''
+        error('github.user and github.token not found in git config')
+        Help.new
+        false
+      else
+        true
+      end
+    end
+
     def username
       @username ||= repo.config['github.user']
     end
@@ -50,10 +60,14 @@ module Hull
       @api_token ||= repo.config['github.token']
     end
 
+    def remote_name
+      @remote_name ||= repo.config['hull.remote'] || 'origin'
+    end
+
     def github_url
       @github_url ||=
         begin
-          _, owner, project = repo.config['remote.origin.url'].match(/^git@github.com:([^\/]*)\/(.*)\.git/).to_a
+          _, owner, project = repo.config["remote.#{remote}.url"].match(/^git@github.com:([^\/]*)\/(.*)(\.git)?/).to_a
           "https://github.com/api/v2/json/pulls/#{owner}/#{project}"
         end
     end
@@ -61,7 +75,7 @@ module Hull
     def repo
       @repo ||= Grit::Repo.new(".")
       unless valid_repository?(@repo)
-        raise InvalidRepository.new('Origin must be a GitHub repository')
+        raise InvalidRepository.new("#{remote} must be a GitHub repository")
       end
       @repo
     end
@@ -77,8 +91,8 @@ module Hull
     end
 
     def valid_repository?(repository)
-      repository.remote_list.include?('origin') &&
-        repository.config['remote.origin.url'].match(/^git@github.com:/)
+      repository.remote_list.include?(remote) &&
+        repository.config["remote.#{remote}.url"].match(/^git@github.com:/)
     end
   end
 

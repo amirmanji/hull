@@ -1,6 +1,7 @@
 module Hull
   class List < Command
     def initialize
+      validate_config
       json = get_json(github_url)
       if json['error'].to_s != ''
         return error("Pull request ##{request_number} might not exist.")
@@ -11,8 +12,8 @@ module Hull
       return if pulls.length == 0
 
       branch_names = pulls.map { |pull| pull['head']['label'].split(/:/) }
-      repo_len   = [ branch_names.map(&:first).map(&:length).max, 15 ].min
-      branch_len = [ branch_names.map(&:last).map(&:length).max,  30 ].min
+      @repo_len   = [ branch_names.map(&:first).map(&:length).max, 15 ].min
+      @branch_len = [ branch_names.map(&:last).map(&:length).max,  30 ].min
 
       pulls.each do |pull|
         puts pull_info(pull)
@@ -38,9 +39,9 @@ module Hull
       end
 
       number      = pad_left(number, 6)
-      title       = pad_right(title, column_size - repo_len - branch_len - 10)
-      repo_name   = pad_left(repo_name, repo_len)
-      branch_name = pad_right(branch_name, branch_len)
+      title       = pad_right(title, column_size - @repo_len - @branch_len - 10)
+      repo_name   = pad_left(repo_name, @repo_len)
+      branch_name = pad_right(branch_name, @branch_len)
 
       [
         write(number, color),
