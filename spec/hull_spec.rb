@@ -5,9 +5,9 @@ describe Hull do
     it "should handle bad args" do
       commands = [ '', 'asdf', 'foo' ]
       commands.each do |command|
-        command = Command.new(command)
-        command.command.should == 'help'
-        command.number.should be_nil
+        hull = Hull::Hull.new(command)
+        hull.command.should == 'help'
+        hull.number.should be_nil
       end
     end
 
@@ -15,15 +15,15 @@ describe Hull do
       commands = %w(list show pull rm)
       commands.each do |command|
         args = "#{command} 10"
-        command = Command.new(args)
-        command.command.should == 'help'
-        command.number.should be_nil
+        hull = Hull::Hull.new(args)
+        hull.command.should == 'help'
+        hull.number.should be_nil
       end
     end
   end
 
   it "should run list" do
-    command = Command.new('list')
+    command = Hull::Hull.new('list')
     List.expects(:new).once
     command.run
 =begin
@@ -37,6 +37,10 @@ describe Hull do
 
     command = Command.new('rm')
     Remove.expects(:new).once
+    command.run
+
+    command = Command.new('help')
+    Help.expects(:new).once
     command.run
 =end
   end

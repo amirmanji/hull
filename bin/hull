@@ -9,4 +9,4 @@ $:.unshift File.expand_path("../../lib", bin_file)
 
 # start up the CLI
 require "hull"
-Hull::Command.new(*ARGV).run
+Hull::Hull.new(*ARGV).run

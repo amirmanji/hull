@@ -1,5 +1,5 @@
 module Hull
-  class List < Hull
+  class List < Command
     def initialize
       json = get_json(github_url)
       if json['error'].to_s != ''
