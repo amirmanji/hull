@@ -72,8 +72,6 @@ module Hull
           end
           _, owner, project = repo.config["remote.#{remote}.url"].match(/^git@github.com:([^\/]*)\/(.*)/).to_a
           project.gsub!(/\.git$/, '')
-          puts owner
-          puts project
           "https://github.com/api/v2/json/pulls/#{owner}/#{project}"
         end
     end
@@ -89,7 +87,6 @@ module Hull
           api_token
         ]
       }
-      puts url, options
       JSON.load(open(url, options))
     end
 
