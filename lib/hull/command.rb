@@ -53,10 +53,7 @@ module Hull
     def github_url
       @github_url ||=
         begin
-          puts repo.config['remote.origin.url']
           _, owner, project = repo.config['remote.origin.url'].match(/^git@github.com:([^\/]*)\/(.*)\.git/).to_a
-          puts owner
-          puts project
           "https://github.com/api/v2/json/pulls/#{owner}/#{project}"
         end
     end
