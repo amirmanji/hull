@@ -22,6 +22,8 @@ List all pull requests for this project:
 
     $ hull list
 
+### Unimplemented Features
+
 Show details about pull request number <number>:
 
     $ hull show <number>
