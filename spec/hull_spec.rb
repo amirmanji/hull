@@ -21,4 +21,23 @@ describe Hull do
       end
     end
   end
+
+  it "should run list" do
+    command = Command.new('list')
+    List.expects(:new).once
+    command.run
+=begin
+    command = Command.new('show')
+    Show.expects(:new).once
+    command.run
+
+    command = Command.new('pull')
+    Pull.expects(:new).once
+    command.run
+
+    command = Command.new('rm')
+    Remove.expects(:new).once
+    command.run
+=end
+  end
 end
