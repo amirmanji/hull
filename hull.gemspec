@@ -13,5 +13,5 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
   s.files = Dir["lib/**/*.rb"]
   s.add_dependency "json"
-  s.executables = ['bin/hull']
+  s.executables = ['hull']
 end
